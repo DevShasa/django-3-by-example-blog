@@ -2,20 +2,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{% static "css/blog.css" %}">
+        <title>{% block title %}{% endblock title %}</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static "css/styles.css" %}">
     </head>
     <body>
-        <div id="content">
-            {% block content %}
-            {% endblock content %}
-        </div>
-        <div id="sidebar">
-            <h2>My Blog</h2>
-            <p>
-                This is my blog
-            </p>
-        </div>
+        <header>
+            <span class="header-text">My Blog</span>
+        </header>
+        <body>
+            <div class="container">
+                <div class="content tile">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+                <div class="sidebar tile">
+
+                </div>
+            </div>
+        </body>
     </body>
 </html>

@@ -1,21 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-My blog
+My blogogio
 {% endblock title %}
 
 {% block content %}
 
-<h1>Blog entries</h1>
     {% for post in posts %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}"> {{ post.title }}</a>
-        </h2>
-        <p class="date">
-            Published: {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|truncatewords:30|linebreaks }}
+        <div class="posts">
+            <h2><a href="{{ post.get_absolute_url }}" class="post-title">{{ post.title }}</a></h2>
+            <span class="post_info">Published: {{ post.publish }} by {{ post.author }}</span>
+            <p> {{ post.body|truncatewords:30|linebreaks }}</p>
+        </div>
     {% endfor %}
 
     {% include "pagination.html" with page=posts %}
+
 {% endblock content %} 
