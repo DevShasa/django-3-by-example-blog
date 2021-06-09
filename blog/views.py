@@ -16,11 +16,12 @@ def post_list(request):
         posts = paginator.page(page)
     except  PageNotAnInteger:
         # If page is not an integer deliver the first page
+        # When you  load blog/ this line will be rendered
         posts = paginator.page(1)
     except EmptyPage:
         # If page is oyut of range, deliver last page of results
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post/list.html', {'page':page, 'posts':posts})
+    return render(request, 'blog/post/list.html', {'posts':posts})
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post, 
