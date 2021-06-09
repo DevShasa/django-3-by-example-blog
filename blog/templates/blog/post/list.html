@@ -13,7 +13,9 @@ My blogogio
             <p> {{ post.body|truncatewords:30|linebreaks }}</p>
         </div>
     {% endfor %}
-
+    {% comment %} 
+    Pagination template expeexts a page object in irder to display current page 
+    and total pages, the page object passed to pagination template is called posts {% endcomment %}
     {% include "pagination.html" with page=posts %}
 
 {% endblock content %} 
