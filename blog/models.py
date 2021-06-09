@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import  reverse
 
 
 '''CREATING CUSTOM OBJECTS'''
@@ -56,3 +57,12 @@ class Post(models.Model):
 
     # IF no manager is defined in the model, django automaticaly creates the objects default manager
 
+    def get_absolute_url(self):
+        '''
+        The canonical url, is the single url that is the main url for a blog post
+        setting the canonical url here means that we can refer to it from the templates
+        '''
+        return reverse('blog:post_detail', args=[ self.publish.year,
+                                                self.publish.month,
+                                                self.publish.day,
+                                                self.slug ])
