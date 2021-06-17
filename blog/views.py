@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.views.generic import  ListView
+from .forms import EmailPostForm
+from django.core.mail import send_mail
 
 # Create your views here.
 # Views receive web request and return web response 
@@ -23,6 +25,43 @@ def post_detail(request, year, month, day, post):
                                     publish__month=month, 
                                     publish__day=day)
     return render(request, 'blog/post/detail.html', {'post': post})
+
+
+def post_share(request, post_id):
+    '''
+    Takes a post and sends it as an email
+    '''
+    post = get_object_or_404(Post, id=post_id, status='published')
+    sent = False 
+    if request.method == 'POST':
+        # If the request is post this means the user has submitted data 
+        form = EmailPostForm(request.POST) # Create a form object
+        if form.is_valid():
+            # The form has passed the nescesarry validation
+            cd = form.cleaned_data
+            # Send the email
+            post_url = request.build_absolute_uri(post.get_absolute_url())
+            subject = f"{cd['name']} reccomends you read blog post: {post.title}"
+            message = f"Read {post.title} at {post_url} \n" \
+                        f"{cd['name']}'s commented {cd['comments']}"
+            
+            '''
+            send_mail() function takes several parameters
+            > SUBJECT
+            > MESSAGE
+            > SENDER
+            > LIST OF RECEPIENTS 
+            > fail_silently = bool
+            '''
+            send_mail(subject, message, "bigballs@admin.com", [cd['to'], ])
+            sent = True
+    else:
+        # When the view is initialy loaded, create an instance of form 
+        # The instance is used to display the empty form
+        
+        form = EmailPostForm()
+
+    return render(request, 'blog/post/share.html', {'post':post, 'form':form, 'sent':sent})
 
 
 '''This is the old listview, which is similar to PostListView above'''
