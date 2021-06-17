@@ -16,6 +16,7 @@ My blogogio
     {% comment %} 
     Pagination template expeexts a page object in irder to display current page 
     and total pages, the page object passed to pagination template is called posts {% endcomment %}
-    {% include "pagination.html" with page=posts %}
+    {% comment %} {% include "pagination.html" with page=posts %} {% endcomment %}
+    {% include "pagination.html" with page=page_obj %}
 
 {% endblock content %} 

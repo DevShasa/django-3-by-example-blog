@@ -1,3 +1,7 @@
+{% comment %} Basicaly the role of this pagination filesis to call 
+back to the view with teh page number as a get object.the view will then 
+render list.html again with the next set of posts  {% endcomment %}
+
 <div class="pagination">
     <span class="step-links">
         {% if page.has_previous %}

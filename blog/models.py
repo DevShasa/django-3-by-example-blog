@@ -18,8 +18,7 @@ class PublishedManager(models.Manager):
 # Create your models here.
 class Post(models.Model):
     STATUS_CHOICES = (
-        ('draft', 'Draft'),
-        ('published', 'Published'),
+        ('draft', 'Draft'), ('published', 'Published'),
     )
     title = models.CharField(max_length=200)
 
@@ -51,7 +50,7 @@ class Post(models.Model):
         # The default human readable representation of the object 
         return self.title
 
-    #Creating custom managers for the post model
+    #Creating custom managers for the post model   
     objects = models.Manager() # Ths is the default manager, accessed via Post.objects
     published = PublishedManager() # Post.published
 

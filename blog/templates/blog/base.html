@@ -2,13 +2,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock title %}</title>
+        <title>{% block title %}Wolan{% endblock title %}</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="{% static "css/styles.css" %}">
+        {% block style %}
+            <link rel="stylesheet" href="{% static "css/styles.css" %}">
+        {% endblock style %}
     </head>
     <body>
         <header>
-            <span class="header-text">My Blog</span>
+            <h2><a class="header-text" href="{% url 'blog:post_list' %}">My Blog</a></h2>
         </header>
         <body>
             <div class="container">
