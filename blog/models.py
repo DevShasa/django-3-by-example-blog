@@ -8,7 +8,6 @@ from django.urls import  reverse
 # objects (models.objects)is the default manager for every model that retrieves all objects in the database 
 # However, on can define custom managers for the models
 # Below is a custom manager that retrieves posts with a status='published'
-
 class PublishedManager(models.Manager):
     def get_queryset(self):
         # Fetch the usual queryset returned by the default objects then add a filter to it 
@@ -65,3 +64,27 @@ class Post(models.Model):
                                                 self.publish.month,
                                                 self.publish.day,
                                                 self.slug ])
+
+class Comment(models.Model):
+    '''
+    In the post, atribute below there is a related_name atribute
+    the related_name atribute allows you to name the relationship from 
+    the related object back to this one. For instance 
+    you can retrieve the post of a comment using comment.post
+    you can retrieve all comments using post.comments.all() instead of post.comment_set.all()
+    '''
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)# Creation date 
+    updated = models.DateTimeField(auto_now=True)# updated date everytime there is an update
+    active = models.BooleanField(default=True)
+
+    # Tell django that whenever comment objects are called, order using created field
+    class Meta:
+        ordering = ('created',)
+    
+    def __str__(self):
+        return f'Comment by {self.name} on {self.post}'
+    
