@@ -52,7 +52,7 @@ header{
 }
 .posts > h2{
     margin: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgb(197, 197, 197);
 }
 .post-title{
     text-decoration: none;
@@ -133,4 +133,14 @@ input[type=submit]:hover{
 
 .form-small{
     color: rgba(71, 70, 70, 0.603);
+}
+
+.errorlist{
+    list-style-type: none;
+    color: red;
+    background-color: white;
+    border: 1px solid red;
+    padding: 0.5em;
+    border-radius: 0.2em
+
 }

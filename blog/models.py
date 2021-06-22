@@ -59,7 +59,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         '''
         The canonical url, is the single url that is the main url for a blog post
-        setting the canonical url here means that we can refer to it from the templates
+        setting the canonical url here means that we can refer to it from the templates 
         '''
         return reverse('blog:post_detail', args=[ self.publish.year,
                                                 self.publish.month,
