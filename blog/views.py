@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.views.generic import  ListView
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 
 # Create your views here.
@@ -24,7 +24,35 @@ def post_detail(request, year, month, day, post):
                                     publish__year=year, 
                                     publish__month=month, 
                                     publish__day=day)
-    return render(request, 'blog/post/detail.html', {'post': post})
+    
+
+    # Get the comments listed as active
+    comments  = post.comments.filter(active=True)
+    # This is a flag used to display whether there is a new comment so that it can be displayed
+    new_comment = None 
+    # when data is submitted using the form 
+    if request.method == 'POST':
+        comment_form = CommentForm(data = request.POST)
+        if comment_form.is_valid():
+            # Create a new comment object but dont save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the post to the comment 
+            new_comment.post = post
+            # Now we can save 
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    
+    return render(request,"blog/post/detail.html",
+                # Context
+                {   
+                    "post": post, # The blogpost   
+                    "comments": comments, # The comments under the blog
+                    "new_comment": new_comment, # The comment just submitted
+                    "comment_form": comment_form # The modelForm object
+                }
+    )
+
 
 # This handles the form 
 def post_share(request, post_id):

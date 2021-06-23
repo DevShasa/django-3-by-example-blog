@@ -17,4 +17,18 @@
         </p>
     </div>
 
+    <div class="comment-list">
+        <h2>Comments</h2>
+        {% for comment in comments %}
+            <div class="comment">
+                <span class="post_info">
+                    Comment {{ forloop.counter }} | by {{ comment.name }} | on {{ comment.created }}
+                </span>
+                <p>
+                    {{ comment.body|linebreaks }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock content %}
