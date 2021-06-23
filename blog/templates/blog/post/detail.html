@@ -26,7 +26,11 @@
                 </span>
                 <p>
                     {{ comment.body|linebreaks }}
-                </p>
+                </p>  
+            </div>
+        {% empty %}
+            <div class="comment">
+                <p>There are no comments yet</p>
             </div>
         {% endfor %}
     </div>

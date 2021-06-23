@@ -36,9 +36,9 @@ def post_detail(request, year, month, day, post):
         if comment_form.is_valid():
             # Create a new comment object but dont save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assign the post to the comment 
+            # Assign the post to the comment  
             new_comment.post = post
-            # Now we can save 
+            # Now we can save  
             new_comment.save()
     else:
         comment_form = CommentForm()
