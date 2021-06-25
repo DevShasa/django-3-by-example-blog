@@ -14,12 +14,14 @@
         </p>
         <p>
             <a href="{% url 'blog:post_share' post.id %}" class="blog-button">Share this post</a>
-            <button class="blog-button" id="open">Open</button>
         </p>
     </div>
 
     <div class="comment-list">
-        <h2>Comments</h2>
+        <h2>
+            Comments
+        </h2>
+        <button class="blog-button" id="open">Add a comment</button>
         {% for comment in comments %}
             <div class="comment">
                 <span class="post_info">

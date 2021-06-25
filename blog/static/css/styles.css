@@ -95,13 +95,19 @@ header{
 .blog-button:hover{
     background-color: rgb(155, 153, 153);
 }
+/*The blog button that opens the modal has id=open so we can target is using
+the ruleset below */
+#open{
+    border: none;
+    font-size: 1rem;
+}
 .comment-list{
     background-color: white;
     padding: 1em;
 }
 .comment-list > h2{
     border-bottom: 1px solid #eee;
-    margin-top: 0;
+    margin: 0;
 }
 .comment{
     padding: 1em;
