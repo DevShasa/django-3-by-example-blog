@@ -13,7 +13,8 @@
             {{ post.body|linebreaks }}
         </p>
         <p>
-            <a href="{% url 'blog:post_share' post.id %}">Share this post</a>
+            <a href="{% url 'blog:post_share' post.id %}" class="blog-button">Share this post</a>
+            <button class="blog-button" id="open">Open</button>
         </p>
     </div>
 
@@ -35,4 +36,40 @@
         {% endfor %}
     </div>
 
+    <div class="modal" id="modal">
+        <div class = "modal-backdrop"></div>
+        <div class="modal-body">
+            <button class="modal-close" id="close">close</button>
+            <div class="form-tile">
+                {% if new_comment %}
+                    <h2>Your comment has been posted</h2>
+                {% else %}
+                    <h2>Add a new comment</h2>
+                    <form method="post">
+                        {{ comment_form.as_p }}
+                        {% csrf_token %}
+                        <input type="submit" value= "Add Comment"/>
+                    </form>
+                {% endif %}
+            </div> 
+        </div>
+    </div>
 {% endblock content %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var open = document.getElementById("open");
+        var close = document.getElementById("close")
+        var modal = document.getElementById("modal")
+
+        open.addEventListener("click", function(event){
+            event.preventDefault(); 
+            modal.style.display = 'block';
+        })
+
+        close.addEventListener("click", function(event){
+            event.preventDefault();
+            modal.style.display = 'none';
+        })
+    </script>
+{% endblock javascript %}

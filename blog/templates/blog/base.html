@@ -12,16 +12,14 @@
         <header>
             <h2><a class="header-text" href="{% url 'blog:post_list' %}">My Blog</a></h2>
         </header>
-        <body>
-            <div class="container">
-                <div class="content tile">
-                    {% block content %}
-                    {% endblock content %}
-                </div>
-                <div class="sidebar tile">
-
-                </div>
+        <div class="container">
+            <div class="content tile">
+                {% block content %}
+                {% endblock content %}
             </div>
-        </body>
+            <div class="sidebar tile"> </div>
+        </div>
+    {% block javascript %}
+    {% endblock javascript %}
     </body>
 </html>

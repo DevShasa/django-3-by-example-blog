@@ -84,16 +84,16 @@ header{
     border-bottom: 1px solid #eee;
     margin-top: 0;
 }
-.blog-post > p > a{
+.blog-button{
     text-decoration: none;
     color: black;
     cursor: pointer;
     background-color: rgb(197, 197, 197);
     padding: 0.5em 1em;
+    cursor: pointer;
 }
-.blog-post > p > a:hover{
+.blog-button:hover{
     background-color: rgb(155, 153, 153);
-
 }
 .comment-list{
     background-color: white;
@@ -107,8 +107,26 @@ header{
     padding: 1em;
     background-color: #eee;
 }
-.comment-info{
-    
+
+/*MODA  STYLES*/
+.modal{
+    display: none;
+}
+.modal-backdrop{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-body{
+    position: fixed;
+    right: 20%;
+    left: 20%;
+    top: 3em;
+    padding: 2em 3em;
+    overflow: auto;
 }
 
 /* these styles are for the form   */
