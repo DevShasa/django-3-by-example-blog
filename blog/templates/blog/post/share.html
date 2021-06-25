@@ -5,7 +5,7 @@
     Share post
 {% endblock title  %}
 
-{% block content %}
+{% block content %} 
     {% if sent %}
     <div class="form-tile">
         <h1>Email successfully sent</h1>
@@ -19,7 +19,7 @@
             <form method="post">
                 {{ form.as_p }}
                 {% csrf_token %}
-                <input type="submit" value= "Send e-mail"/>
+                <input type="submit" value= "Send e-mail"/> 
             </form>
         </div>
     {% endif %}

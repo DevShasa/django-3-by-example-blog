@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import  reverse
+from taggit.managers import  TaggableManager
 
 
 '''CREATING CUSTOM OBJECTS'''
@@ -40,6 +41,8 @@ class Post(models.Model):
     
     # the choices parameter limits us to one of the specified choices
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    # Tags here
+    tags = TaggableManager()
 
     class Meta:
         # This tells django to sort data beginning with the latest published by default 
@@ -64,6 +67,7 @@ class Post(models.Model):
                                                 self.publish.month,
                                                 self.publish.day,
                                                 self.slug ])
+
 
 class Comment(models.Model):
     '''

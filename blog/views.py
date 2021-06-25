@@ -45,15 +45,13 @@ def post_detail(request, year, month, day, post):
     
     return render(request,"blog/post/detail.html",
                 # Context
-                {   
-                    "post": post, # The blogpost   
-                    "comments": comments, # The comments under the blog
-                    "new_comment": new_comment, # The comment just submitted
-                    "comment_form": comment_form # The modelForm object
-                }
-    )
-
-
+                {
+                "post": post, # The blogpost   
+                "comments": comments, # The comments under the blog
+                "new_comment": new_comment, # The comment just submitted
+                "comment_form": comment_form # The modelForm object
+                }) 
+                
 # This handles the form 
 def post_share(request, post_id):
     '''
