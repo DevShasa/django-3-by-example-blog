@@ -6,17 +6,39 @@ My blogogio
 
 {% block content %}
 
+    {% if tag %}
+        <h2>These are the posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+
     {% for post in posts %}
         <div class="posts">
+
+            {% comment %} title  {% endcomment %}
             <h2><a href="{{ post.get_absolute_url }}" class="post-title">{{ post.title }}</a></h2>
+
+            {% comment %} article info {% endcomment %}
             <span class="post_info">Published: {{ post.publish }} by {{ post.author }}</span>
+
+            {% comment %} displaying the tags {% endcomment %}
+            <div class="tag-div">
+                {% for tag in post.tags.all %}
+                    <a class="tags" href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
+            </div>
+
+            {% comment %} the truncated article  {% endcomment %}
             <p> {{ post.body|truncatewords:30|linebreaks }}</p>
+
         </div>
     {% endfor %}
     {% comment %} 
-    Pagination template expeexts a page object in irder to display current page 
-    and total pages, the page object passed to pagination template is called posts {% endcomment %}
-    {% comment %} {% include "pagination.html" with page=posts %} {% endcomment %}
-    {% include "pagination.html" with page=page_obj %}
+        Pagination template expects a page object in order to display current page 
+        and total pages, the page object passed to pagination template is called posts 
+        {% include "pagination.html" with page=posts %}    function view
+        {% include "pagination.html" with page=page_obj %} class view
+    {% endcomment %}
+    {% include "pagination.html" with page=posts %}
 
 {% endblock content %} 

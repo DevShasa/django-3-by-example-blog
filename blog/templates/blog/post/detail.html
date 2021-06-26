@@ -17,6 +17,7 @@
         </p>
     </div>
 
+    {% comment %} the list of comments for each article {% endcomment %}
     <div class="comment-list">
         <h2>
             Comments
@@ -38,6 +39,7 @@
         {% endfor %}
     </div>
 
+    {% comment %} the form to display the comments  {% endcomment %}
     <div class="modal" id="modal">
         <div class = "modal-backdrop"></div>
         <div class="modal-body">
@@ -75,3 +77,12 @@
         })
     </script>
 {% endblock javascript %}
+
+{% block sidebar %}
+    <h3>Similar posts</h3>
+    {% for post in similar_posts %}
+        <a href="{{ post.get_absolute_url }}" class="detail-sidebar-link">
+            {{ post.title }}
+        </a>
+    {% endfor %}
+{% endblock sidebar %}

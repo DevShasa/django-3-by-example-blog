@@ -17,7 +17,10 @@
                 {% block content %}
                 {% endblock content %}
             </div>
-            <div class="sidebar tile"> </div>
+            <div class="sidebar tile">
+                {% block sidebar %}
+                {% endblock sidebar %}
+            </div>
         </div>
     {% block javascript %}
     {% endblock javascript %}

@@ -95,6 +95,30 @@ header{
 .blog-button:hover{
     background-color: rgb(155, 153, 153);
 }
+.tags{
+    font-size: 0.8rem;
+    background-color: grey;
+    color:white;
+    padding: 0.4em;
+    border-radius: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* 
+Apply styling only amongst the tags
+.tag-div > a + a{ 
+.tag-div > .tags + .tags{ 
+*/
+.tag-div{
+    margin: 0.5em 0 0 0;
+}
+.tag-div > * + *{
+    margin-left: 0.5em;
+}
+.tags:hover{
+    background-color: rgb(109, 108, 108);
+}
+
 /*The blog button that opens the modal has id=open so we can target is using
 the ruleset below */
 #open{
@@ -193,4 +217,17 @@ input[type=submit]:hover{
     padding: 0.5em;
     border-radius: 0.2em
 
+}
+
+/*Sidebar styles*/
+.detail-sidebar-link{
+    display: block;
+    text-decoration: none;
+    font-size: 0.8rem;
+    background-color: grey;
+    color:white;
+    padding: 0.4em;
+    border-radius: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
 }
