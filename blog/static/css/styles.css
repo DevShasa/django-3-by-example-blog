@@ -231,3 +231,6 @@ input[type=submit]:hover{
     text-decoration: none;
     cursor: pointer;
 }
+.detail-sidebar-link:hover{
+    background-color: rgb(98, 175, 219);
+}

@@ -46,7 +46,6 @@ def post_detail(request, year, month, day, post):
     # Use Count to generate a value theat represents number of shared tags
     # Order the results by the number of shared tags in -descending-order...
     # Order the resulting queryset above by published so that recent posts come first...
-    # Slice the result to onlu get four entries 
     # for more info on annotate check page 127 in django documentation book     
     similar_posts = similar_posts.annotate(same_tags =Count("tags")).order_by('-same_tags', "-publish")[:4]
 
