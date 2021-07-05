@@ -36,7 +36,7 @@ def post_detail(request, year, month, day, post):
     else:
         comment_form = CommentForm()
     
-    # Recooment similar posts
+    # THE THREE LINES OF CODE BELOW FUNCTION TO RECCOMEND SIMILAR POSTS TO USERS ON DETAILVIEW
     # Get a python [list] of ids of tags for the current post...
     # values_list() queryset returns tuples with the values of the given fields...
     # flat=True is to get the list [1, 2, 3, ...] instead of [(1,), (2,), (3,) ...] 
@@ -79,7 +79,7 @@ def post_share(request, post_id):
                         f"{cd['name']}'s commented {cd['comments']}"
             
             '''
-            send_mail() function takes several parameters
+            send_mail() function takes several parameters 
             > SUBJECT
             > MESSAGE
             > SENDER
@@ -127,7 +127,7 @@ def post_list(request, tag_slug=None):
     return render(request, 'blog/post/list.html', {
                                                     'posts':posts,
                                                     'tag':tag,
-                                                    'page':page,
+                                                    # 'page':page,
                                                     })
 
 

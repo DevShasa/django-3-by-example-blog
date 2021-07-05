@@ -5,16 +5,23 @@ render list.html again with the next set of posts  {% endcomment %}
 <div class="pagination">
     <span class="step-links">
         {% if page.has_previous %}
-            {% comment %} this url is passed to the view and accessed from the view by ...
-            page = request.GET.get('page') {% endcomment %} 
+
+            {% comment %} 
+            the views get the page by>> page = request.GET.get('page') 
+
+            GET parameters always start with a question mark ?. 
+            This is followed by the name of the variable and the corresponding value,
+            separated by an =. 
+            If an URL contains more than one parameter, they are separated by an Ampersand &. 
+            {% endcomment %}
             <a href="?page ={{ page.previous_page_number }}">Previous</a>
         {% endif %}
         <span class="current">
             Page {{ page.number }} of {{ page.paginator.num_pages }}
         </span>
             {% if page.has_next %}
-                <a href="?page= {{ page.next_page_number}}">Next</a>
-            {% endif %}
+                <a href="?page= {{ page.next_page_number}}">Next</a> 
+            {% endif %} 
     </span>
 </div>
 

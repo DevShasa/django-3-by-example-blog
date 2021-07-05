@@ -234,3 +234,15 @@ input[type=submit]:hover{
 .detail-sidebar-link:hover{
     background-color: rgb(98, 175, 219);
 }
+
+/* Styles for the paginator at the bottom of each listview  */
+.step-links > a{
+    text-decoration: none;
+    background-color: grey;
+    padding: 0.2em 0.5em;
+    color: black;
+}
+.step-links >a:hover{
+    background-color: aquamarine;
+    color: white
+}
