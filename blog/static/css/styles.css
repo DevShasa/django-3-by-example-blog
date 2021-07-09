@@ -220,7 +220,7 @@ input[type=submit]:hover{
 }
 
 /*Sidebar styles*/
-.detail-sidebar-link{
+.sidebar-link{
     display: block;
     text-decoration: none;
     font-size: 0.8rem;
@@ -231,7 +231,7 @@ input[type=submit]:hover{
     text-decoration: none;
     cursor: pointer;
 }
-.detail-sidebar-link:hover{
+.sidebar-link:hover{
     background-color: rgb(98, 175, 219);
 }
 

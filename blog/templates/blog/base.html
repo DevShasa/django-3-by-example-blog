@@ -1,3 +1,4 @@
+{% load blog_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,12 @@
     </head>
     <body>
         <header>
-            <h2><a class="header-text" href="{% url 'blog:post_list' %}">My Blog</a></h2>
+            <h2>
+                <a class="header-text" href="{% url 'blog:post_list' %}">
+                    My Blog: <small> {% total_posts %} posts available</small>
+                </a>
+            </h2>
+
         </header>
         <div class="container">
             <div class="content tile">
@@ -19,6 +25,7 @@
             </div>
             <div class="sidebar tile">
                 {% block sidebar %}
+                    {% show_latest_posts %}
                 {% endblock sidebar %}
             </div>
         </div>
