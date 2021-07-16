@@ -12,18 +12,21 @@ from django.db.models import Count
 # Each view renders a template, passing variables to it
 
 def post_detail(request, year, month, day, post):
+
+    # Fetch the post 
     post = get_object_or_404(Post, slug=post, 
                                     status='published', 
                                     publish__year=year, 
                                     publish__month=month, 
                                     publish__day=day)
     
-
-    # Get the comments listed as active
+    # Fetch the comments 
     comments  = post.comments.filter(active=True)
+
+
     # This is a flag used to display whether there is a new comment so that it can be displayed
     new_comment = None 
-    # when data is submitted using the form 
+    # The detail view also includes a form for users to submit comments, the comment form appears as a modal 
     if request.method == 'POST':
         comment_form = CommentForm(data = request.POST)
         if comment_form.is_valid():
@@ -105,7 +108,7 @@ def post_list(request, tag_slug=None):
     tag = None
     if tag_slug:
 
-        # Fetch the tag from the database 
+        # Fetch the tag from the tag database 
         tag = get_object_or_404(Tag, slug=tag_slug)
         # Get only the posts that have the indicated tag 
         object_list = object_list.filter(tags__in=[tag]) 

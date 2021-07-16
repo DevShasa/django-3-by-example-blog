@@ -23,7 +23,6 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
 
     # slug is intended to be used in urls, a slug is a short label containing only letters, numbers...
-    # ...Underscores or hyphens. Slug will enable the creation of beautiful, seo friendly urls for blog posts
     # unique_for_date prevents the entry of two records with the same slug and date
     # unique_for_date ensures that there is only one post with a slug for a given date
     # Django prevents multiple posts from having the same slug

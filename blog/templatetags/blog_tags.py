@@ -1,7 +1,8 @@
 # Create a simple tag to retrieve teh total post published on the blog 
 # Remember to restart the development server after creating a new tag 
 from django import template
-from ..models import Post 
+from ..models import Post
+from django.db.models import Count
 
 # This is nescesarry for the tag to be a valid tag library
 register = template.Library()
@@ -21,3 +22,8 @@ def show_latest_posts(count=5):
     return {
         'latest_posts': latest_posts
     }
+
+@register.simple_tag
+def most_commented_post(count = 5):
+    # Returns a queryset 
+    return Post.published.annotate(total_comment = Count("comments")).order_by('-total_comment')[:count]
