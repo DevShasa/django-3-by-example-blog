@@ -25,5 +25,5 @@ def show_latest_posts(count=5):
 
 @register.simple_tag
 def most_commented_post(count = 5):
-    # Returns a queryset 
+    # Returns a queryset
     return Post.published.annotate(total_comment = Count("comments")).order_by('-total_comment')[:count]
