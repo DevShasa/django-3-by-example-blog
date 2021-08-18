@@ -24,13 +24,12 @@
                 {% endblock content %}
             </div>
             <div class="sidebar tile">
-                {% block sidebar %}
+                {% block sidebar %} 
                     {% show_latest_posts %} 
 
                     <h3>Most commented posts</h3>
                     {% most_commented_post as comment_posts %}
                     {% for cpost in comment_posts %}
-                        {% comment %} Display a link {% endcomment %}
                         <a href="{{ cpost.get_absolute_url }}" class="sidebar-link">{{ cpost.title }}</a> 
                     {% endfor %}         
                 {% endblock sidebar %}

@@ -1,4 +1,6 @@
 {% extends 'blog/base.html' %}
+{% load blog_tags %}
+
 
 {% block title %}
 My blogogio
@@ -28,8 +30,8 @@ My blogogio
                 {% endfor %}
             </div>
 
-            {% comment %} the truncated article  {% endcomment %}
-            <p> {{ post.body|truncatewords:30|linebreaks }}</p>
+            {% comment %} truncatewords_html truncates a string avoiding unclosed html tags  {% endcomment %}
+            <p> {{ post.body|markdown|truncatewords_html:30 }}</p>
 
         </div>
     {% endfor %}

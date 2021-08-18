@@ -46,7 +46,7 @@ def post_detail(request, year, month, day, post):
     post_tag_ids = post.tags.values_list("id", flat=True)
     # Fetch all posts that have the tags in the post_tag_ids queryset
     similar_posts = Post.published.filter(tags__in=post_tag_ids).exclude(id=post.id)
-    # Use Count to generate a value theat represents number of shared tags
+    # Use Count to generate a value that represents number of shared tags
     # Order the results by the number of shared tags in -descending-order...
     # Order the resulting queryset above by published so that recent posts come first...
     # for more info on annotate check page 127 in django documentation book     
@@ -100,7 +100,6 @@ def post_share(request, post_id):
     return render(request, 'blog/post/share.html', {'post':post, 'form':form, 'sent':sent})
 
 
-'''This is the old listview, which is similar to PostListView above'''
 def post_list(request, tag_slug=None):
     object_list = Post.published.all() # Here we use our custom object 
     # Alternatively Post.object.filter(status="published")
@@ -127,14 +126,14 @@ def post_list(request, tag_slug=None):
     except EmptyPage:
         # If page is oyut of range, deliver last page of results
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post/list.html', {
-                                                    'posts':posts,
-                                                    'tag':tag,
-                                                    # 'page':page,
-                                                    })
+    return render(
+                    request, 
+                    'blog/post/list.html', 
+                    {'posts':posts,'tag':tag,}
+                )
 
 
-# from django.views.generic import  ListView
+# from django.views.generic import ListView
 # class PostListView(ListView):
 
 #     # Default: model = Post

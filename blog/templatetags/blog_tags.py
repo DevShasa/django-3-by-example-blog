@@ -3,6 +3,8 @@
 from django import template
 from ..models import Post
 from django.db.models import Count
+from django.utils.safestring import mark_safe
+import markdown 
 
 # This is nescesarry for the tag to be a valid tag library
 register = template.Library()
@@ -27,3 +29,14 @@ def show_latest_posts(count=5):
 def most_commented_post(count = 5):
     # Returns a queryset
     return Post.published.annotate(total_comment = Count("comments")).order_by('-total_comment')[:count]
+
+@register.filter(name="markdown")
+def markdown_format(text):
+    return mark_safe(markdown.markdown(text))
+
+    # text=> will include some markdown, delivered from the database
+    # markdown.markdown takes the markdown and converts it into html
+    # mark_safe tells django not to escape the html in the converted markdown because ...
+    # Escaping html is django's default behavior when using filters
+
+    # The setup above means that blogs can be written in markdown and saved to the database 
