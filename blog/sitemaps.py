@@ -1,3 +1,6 @@
+'''
+This file is used to generate sitemap using the content in the database
+'''
 from django.contrib.sitemaps import Sitemap
 from .models import Post
 
