@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+
+{% block title %} Search {% endblock title %}
+
+{% block content %}
+    {% if query %}
+        <h1>Posts containing: {{ query }}</h1>
+        <h3>
+            {% with results.count as total_results %}
+                Found {{ total_results }} results{{ total_results|pluralize }}
+            {% endwith %}
+        </h3>
+        {% for post in results %}
+            <div class="posts">
+                <h2><a href="{{ post.get_absolute_url }}" class="post-title">{{ post.title }}</a></h2>
+                <span class="post_info">Published: {{ post.publish }} by {{ post.author }}</span>
+                <p> {{ post.body|markdown|truncatewords_html:30 }}</p>
+            </div>
+        {% empty %}
+            <p>There are no results for your querry</p>
+        {% endfor %}
+        <div class="search-again">
+            <a href={% url 'blog:post_search' %}>Search Again</a>
+        </div>
+    {% else %}
+        {% comment %} if querry is empty present the form to the user {% endcomment %}
+        <div class="form-tile form">
+            <h2>Search for posts</h2>
+            <form method="get">
+            {% comment %} because the method is get, the form's fields will be shown 
+            in the url for instance if someone searches for "book"
+            url will include /?query=book {% endcomment %}
+                {{form.as_p}}
+                <input type="submit" value="Search"/>
+            </form>
+        </div>
+    {% endif %}
+{% endblock content %}

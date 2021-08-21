@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
-from .forms import EmailPostForm, CommentForm
+from .forms import EmailPostForm, CommentForm, SearchForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
+from django.contrib.postgres.search import SearchVector
 
 
 # Create your views here.
@@ -131,6 +132,22 @@ def post_list(request, tag_slug=None):
                     'blog/post/list.html', 
                     {'posts':posts,'tag':tag,}
                 )
+
+def post_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+
+    # The user has submitted a request for the resource
+    if "query" in request.GET:
+        form =  SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query'] # Query is the form field, get its content
+            # For more options on search including adding weight to search terms, ordering and word-stem,
+            # View django3 by example page 88
+            results = Post.published.annotate(search=SearchVector('title','body'),).filter(search=query)
+        
+    return render(request, 'blog/post/search.html',{'form':form,'query':query,'results':results})
 
 
 # from django.views.generic import ListView
