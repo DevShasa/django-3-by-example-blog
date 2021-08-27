@@ -68,3 +68,18 @@ postgres=# ALTER USER postgres PASSWORD 'admin';
 if it fails try the one below
 ALTER USER postgres WITH PASSWORD 'postgres';
 ```
+
+# Assuming you have set up user blog and database blog, your settings.py should look like this remember to change the password too
+
+```python
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog',
+        'USER': 'blog',
+        'PASSWORD': 'blog',
+        'HOST':'localhost',
+        'PORT':'', 
+    }
+}
+```
