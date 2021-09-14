@@ -1,0 +1,5 @@
+.psc 
+/migrations/
+blog/migrations
+blog/__pycache__
+.vscode
