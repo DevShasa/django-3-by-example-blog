@@ -44,6 +44,12 @@ The name of the database matches the user mkay
 ```
 postgres@slikboi:~$ createdb blog
 ```
+
+Or if you are still in `postgres=#` mode 
+```
+postgres=# CREATE DATABASE booktime;
+```
+
 now login back to psql
 ```
 postgres@slikboi:~$ psql
