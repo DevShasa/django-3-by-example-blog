@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, PostImage 
+from django.utils.html import format_html
 
 
 # Register your models here.
@@ -37,3 +38,16 @@ class CommentAdmin(admin.ModelAdmin):
 We are telling django that the model is registered using a custom class that inherits from ModelAdmin
 Using the custom class, we can include information on how to display the model an interact with it 
 '''
+class PostImageAdmin(admin.ModelAdmin):
+    list_display = ('post_slug', 'thumbnail_tag')
+    readonly_fields=('thumbnail',)
+    search_fields = ('post__slug',)
+
+    def thumbnail_tag(self, obj):
+        if obj.thumbnail:
+            return format_html(f'<img src="{obj.thumbnail.url}">')
+        return "_"
+    
+    def post_slug(self, obj):
+        return obj.post.slug
+admin.site.register(PostImage, PostImageAdmin)
