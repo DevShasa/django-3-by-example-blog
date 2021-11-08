@@ -77,10 +77,10 @@ header{
 
 }
 .post_body_p{
-    margin-top: -1rem;
+    margin-top: 0rem;
 }
-.post_body_p> p{
-    margin-top: 0;
+.post_body_p>p:first-child{
+    margin-top: -1.5rem;
 }
 
 .sidebar{
