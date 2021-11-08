@@ -91,7 +91,3 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
     
-class PostImage(models.Model):
-    post  = models.ForeignKey(Post, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="blog_images")
-    thumbnail = models.ImageField(upload_to="blog_thumbnails")
