@@ -31,7 +31,18 @@ My blogogio
             </div>
 
             {% comment %} truncatewords_html truncates a string avoiding unclosed html tags  {% endcomment %}
-            <p> {{ post.body|markdown|truncatewords_html:30 }}</p>
+            <div class="post_body">
+                {% for image in post.postimage_set.all %}
+                    <img 
+                        src="{{ image.thumbnail.url }}" 
+                        alt="thumbnail" 
+                        class="mr-1"
+                    /> 
+                {% endfor %}
+                <div class="post_body_p">
+                    <p> {{ post.body|markdown|truncatewords_html:30 }}</p>
+                </div>
+            </div>
 
         </div>
     {% endfor %}

@@ -69,6 +69,19 @@ header{
     background-color: white;
     padding: 1em;
 }
+.post_body{
+    display: flex;
+}
+.post_body > img{
+    margin-right: 1rem;
+
+}
+.post_body_p{
+    margin-top: -1rem;
+}
+.post_body_p> p{
+    margin-top: 0;
+}
 
 .sidebar{
     flex:1;
