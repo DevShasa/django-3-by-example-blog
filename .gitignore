@@ -3,3 +3,5 @@
 blog/migrations
 blog/__pycache__
 .vscode
+/media/
+media/
