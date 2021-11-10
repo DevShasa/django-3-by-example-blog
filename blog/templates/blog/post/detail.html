@@ -10,6 +10,13 @@
     <div class="blog-post">
         <h2>{{ post.title }}</h2>
         <span class="post_info">Published {{ post.publish }} by {{ post.author }}</span>
+        {% for image in post.postimage_set.all %}
+                    <img 
+                        src="{{ image.image.url }}" 
+                        alt="thumbnail" 
+                        class="mr-1"
+                    /> 
+        {% endfor %}
         <p>
             {{ post.body|markdown }}
         </p>

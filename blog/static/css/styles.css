@@ -260,3 +260,8 @@ input[type=submit]:hover{
     background-color: aquamarine;
     color: white
 }
+
+/* image */
+.mr-1{
+    width: 100%;
+}
