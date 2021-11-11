@@ -3,7 +3,6 @@ from .models import Post, Comment, PostImage
 from django.utils.html import format_html
 
 
-# Register your models here.
 @admin.register(Post) # this decorator is similar to admin.site.register()
 class PostAdmin(admin.ModelAdmin):
     # The list to display 
