@@ -11,7 +11,7 @@ from taggit.managers import  TaggableManager
 # Below is a custom manager that retrieves posts with a status='published'
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        # Fetch the usual queryset returned by the default objects then add a filter to it 
+        #Fetch the usual queryset returned by the default objects then add a filter to it 
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
 
