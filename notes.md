@@ -131,3 +131,32 @@ Third blog post
 >>> 
 
 ```
+
+# Reverse relationships
+Say you have a model Category and a model Product, each product field 
+has a category foreign key, many products can have one category. 
+the foreign key has related name "products"
+
+getting the reverse relationship list all products attached to a category
+
+```python
+>> from shop.models import Category, Products
+>> cat = Category.objects.all()
+>> for x in cat:
+        print(x, ": ",products.all())
+```
+RESULT 
+```
+Home Improvement:  <QuerySet [<Product: Pliers>]>
+foodstuffs:  <QuerySet [<Product: Green Tea>, <Product: Sugar>]>
+```
+GET ALL RELATED OBJECTS BY NAME
+```python
+>>> for x in cat:
+...     for i in x.products.all():
+...             print(x,": ", i.name)
+... 
+Home Improvement :  Pliers
+foodstuffs :  Green Tea
+foodstuffs :  Sugar
+```
